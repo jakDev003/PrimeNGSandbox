@@ -1,0 +1,44 @@
+<div class="container">
+<h1>Description of the issue:</h1>
+  <p>The purpose of this demonstration is simply to show that when there is a 'p-dialog' open on a page that has a
+    scrollbar,
+    PrimeNG will add a class called 'p-overflow-hidden' which will block scrolling on the parent page. This is great.
+    The issue arises when there is a confirmation Dialog on top of it. Once the confirmation Dialog is closed PrimeNG
+    will
+    then remove the class of 'p-overflow-hidden' but the original 'p-dialog' is still open so the parent page should not
+    be
+    scrollable.</p>
+</div>
+
+<div class="container">
+<h1>Steps To Reproduce:</h1>
+  <ol>
+    <li>Notice there is a scrollbar in the window of the parent page.</li>
+    <li>Click on the 'Show' button.</li>
+    <li>The 'p-dialog' should now open.
+      Notice the parent page is now blocked from scrolling and the scrollbar is gone,
+      and in the developer tools notice the 'body' element now has a class of 'p-overflow-hidden'</li>
+    <li>Click on the 'Confirm Dialog' button.</li>
+    <li>The 'p-confirmDialog' should now be open, notice the 'body' element still has a class of 'p-overflow-hidden'
+    </li>
+    <li>Click on either 'No' or 'Yes' button to close the 'p-confirmDialog'.</li>
+    <li>The 'p-confirmDialog' should now be closed. Notice the 'body' element now has the class of 'p-overflow-hidden'
+      removed and the scrollbar appears and is functional on the parent page.</li>
+  </ol>
+</div>
+
+<div class="container">
+<h1>Scrollbar with Dialog on Dialog</h1>
+  <p-dialog header="Title" [(visible)]="display" [modal]="true">
+    <h5>Dialog</h5>
+    <p-button (click)="confirm1()" icon="pi pi-check" label="Confirm Dialog"></p-button>
+
+    <p-confirmDialog [style]="{ width: '50vw' }" [position]="position" [baseZIndex]="10000"></p-confirmDialog>
+  </p-dialog>
+
+  <p-button (click)="showDialog()" icon="pi pi-circle" label="Show"></p-button>
+
+  <p-messages [value]="msgs"></p-messages>
+
+  <span>{{ productsLg | json }}</span>
+</div>
